@@ -27,7 +27,6 @@
     font-awesome
     gemini-cli
     gh
-    tree
     gimp
     git
     gnumake
@@ -45,6 +44,7 @@
     picom
     playerctl
     polybar
+    postgresql
     python3
     qemu_kvm
     redshift
@@ -53,6 +53,7 @@
     sqlite
     stow
     terraform
+    tree
     typora
     unetbootin
     vlc

@@ -1,6 +1,7 @@
 # https://raw.githubusercontent.com/kijimad/dotfiles/refs/heads/main/adguard/hosts
 
 ||20jav.com^
+||2ch-c.net^
 ||2channeler.com^
 ||2chmm.com^
 ||2chopmt.blog.jp^
@@ -30,11 +31,13 @@
 ||coccoc.com^
 ||commons.wikimedia.org^
 ||dailymotion.com^
+||darakichi2023.com^
 ||diamond.jp^
 ||dmm.co.jp^
 ||dng65.com^
 ||drdinl.com^
 ||duckduckgo.com^
+||efire-matome.com^
 ||egg.5ch.net^
 ||elog-ch.net^
 ||ero-otoko.com^
@@ -57,13 +60,17 @@
 ||gcolle.net^
 ||gendai.media^
 ||gentosha-go.com^
+||gibiru.com^
 ||girls2847.rssing.com^
+||greta.5ch.net^
 ||grotty-monday.com^
 ||hattatu-matome.ldblog.jp^
 ||heypo.net^
 ||himasoku.com^
 ||hobonichielog.com^
 ||hokkaido-np.co.jp^
+||hololive-tsuushin.com^
+||hololive.tv^
 ||hololivepro.com^
 ||huffingtonpost.jp^
 ||i2chmeijin.blog.fc2.com^
@@ -79,6 +86,7 @@
 ||jgirl.co^
 ||jiji.com^
 ||jin115.com^
+||jmanga.link^
 ||jmanga.to^
 ||jnobankisya.2chblog.jp^
 ||jp.reuters.com^
@@ -90,14 +98,17 @@
 ||kaigainoomaera.com^
 ||kanaloco.jp^
 ||kanasoku.info^
+||kinsta.com^
 ||klmanga.is^
 ||korewaeroi.com^
 ||kosodatech.blog133.fc2.com^
 ||kousokuvip.com^
 ||kuragebunch.com^
 ||kusorape.com^
+||lacussita.livedoor.blog^
 ||lifehack2ch.livedoor.biz^
 ||love-hololive.blog.jp^
+||luckykonami.com^
 ||mainichi.jp^
 ||manga-mate.org^
 ||mangajikan.com^
@@ -107,6 +118,7 @@
 ||mangarawjp.vip^
 ||masutabe.info^
 ||matomeantena.com^
+||metaversesokuhou.blog.jp^
 ||michaelsan.livedoor.biz^
 ||missav.com^
 ||mmmvideos.com^
@@ -174,12 +186,14 @@
 ||shitsumonaru.com^
 ||sikopedia.com^
 ||simozo.net^
+||singleinseoul.com^
 ||smart-douga.mobi^
 ||smoglog.hatenablog.com^
 ||sow.blog.jp^
 ||spankbang.com^
 ||spankbang.party^
 ||spoilerplus.blog^
+||sportsbull.jp^
 ||sukebei.nyaa.si^
 ||suki-kira.com^
 ||summary.fc2.com^
@@ -189,12 +203,14 @@
 ||tohyotalk.com^
 ||tokyo-np.co.jp^
 ||tokyomotion.net^
+||topics.smt.docomo.ne.jp^
 ||toro.open2ch.net^
 ||tounavi.net^
 ||tousatu1919.com^
 ||toyokeizai.net^
 ||tozanchannel.blog.jp^
 ||trafficnews.jp^
+||trilltrill.jp^
 ||tuber-review.com^
 ||tv-asahi.co.jp^
 ||twicoco.com^
@@ -211,10 +227,13 @@
 ||visual-matome.com^
 ||voyeurgeek.com^
 ||vtuber-matomeblog.com^
+||vtuber.asoku.net^
 ||vtubersokuhou.com^
 ||w.atwiki.jp^
+||withnews.jp^
 ||world-fusigi.net^
 ||www.afpbb.com^
+||www.anige-sokuhouvip.com^
 ||www.appbank.net^
 ||www.baidu.com^
 ||www.bbc.com^
@@ -246,6 +265,7 @@
 ||www.panchira.club^
 ||www.ptt.cc^
 ||www.pttweb.cc^
+||www.sanspo.com^
 ||www.sejuku.net^
 ||www.slangeigo.com^
 ||www.tiktok.com^

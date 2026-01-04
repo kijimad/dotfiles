@@ -20,6 +20,7 @@
     delve
     docker-compose
     dunst
+    emacsPackages.mozc
     fcitx5
     fcitx5-configtool
     fcitx5-gtk
@@ -31,6 +32,7 @@
     git
     gnumake
     go
+    guake
     gocode-gomod
     golangci-lint
     google-chrome
@@ -138,14 +140,14 @@
       Install.WantedBy = [ "default.target" ];
     };
 
-    picom = {
-      Unit.Description = "Picom compositor";
-      Service = {
-        ExecStart = "${pkgs.picom}/bin/picom";
-        Restart = "on-failure";
-      };
-      Install.WantedBy = [ "default.target" ];
-    };
+    # picom = {
+    #   Unit.Description = "Picom compositor";
+    #   Service = {
+    #     ExecStart = "${pkgs.picom}/bin/picom";
+    #     Restart = "on-failure";
+    #   };
+    #   Install.WantedBy = [ "default.target" ];
+    # };
 
     polybar = {
       Unit.Description = "Polybar status bar";

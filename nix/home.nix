@@ -21,6 +21,7 @@
     docker-compose
     dunst
     emacsPackages.mozc
+    mozc
     (qt6Packages.fcitx5-with-addons.override { addons = [ fcitx5-mozc ]; })
     fcitx5-gtk
     font-awesome

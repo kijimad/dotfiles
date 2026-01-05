@@ -21,10 +21,8 @@
     docker-compose
     dunst
     emacsPackages.mozc
-    fcitx5
-    fcitx5-configtool
+    (qt6Packages.fcitx5-with-addons.override { addons = [ fcitx5-mozc ]; })
     fcitx5-gtk
-    fcitx5-mozc
     font-awesome
     gemini-cli
     gh
@@ -89,9 +87,9 @@
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'
   home.sessionVariables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
+    GTK_IM_MODULE = "fcitx5";
+    QT_IM_MODULE = "fcitx5";
+    XMODIFIERS = "@im=fcitx5";
   };
 
   # Prepend Nix profile to PATH
@@ -153,6 +151,15 @@
       Unit.Description = "Polybar status bar";
       Service = {
         ExecStart = "${pkgs.polybar}/bin/polybar top";
+        Restart = "on-failure";
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+
+    fcitx5 = {
+      Unit.Description = "Fcitx5 input method";
+      Service = {
+        ExecStart = "${pkgs.qt6Packages.fcitx5-with-addons.override { addons = [ pkgs.fcitx5-mozc ]; }}/bin/fcitx5";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "default.target" ];

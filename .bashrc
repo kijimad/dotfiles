@@ -109,9 +109,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export LC_CTYPE=ja_JP.UTF-8
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx5
 
 # peco ================
 function peco-select-history() {

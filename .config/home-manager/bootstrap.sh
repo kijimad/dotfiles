@@ -115,7 +115,10 @@ setup_github_ssh() {
     # Upload SSH key to GitHub
     if [ -f "$HOME/.ssh/id_ed25519.pub" ]; then
         echo "  Uploading SSH key to GitHub..."
-        gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)" || echo "  Note: Key may already be registered"
+        set +e
+        gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)"
+        key_add_result=$?
+        set -e
     else
         echo "  Error: SSH public key not found at $HOME/.ssh/id_ed25519.pub"
         exit 1

@@ -107,7 +107,7 @@ setup_github_ssh() {
     # GitHub CLI login
     if ! gh auth status &> /dev/null; then
         echo "  Logging in to GitHub CLI..."
-        gh auth login
+        gh auth login --scopes admin:public_key
     else
         echo "  Skip: already logged in to GitHub CLI"
     fi

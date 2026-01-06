@@ -73,18 +73,6 @@
       };
       vendorHash = "sha256-w3jHXjA/nYOn4CWJFZDwfClFy+ZYv/HFIYeqlfydPhQ=";
     })
-
-    (buildGoModule {
-      pname = "xruler";
-      version = "unstable-2025-10-22";
-      src = fetchFromGitHub {
-        owner = "kijimad";
-        repo = "xruler";
-        rev = "91c1f6d47ca15d9e3dc3ee334e7da4e5bf6f77f6";
-        hash = "sha256-IjYQD1SQYc7XkzwwSl81g81ARTexkeFKdlIE0UAiWGE=";
-      };
-      vendorHash = "sha256-kAvsrEjz/0xb7/lizw+Ag+5YyVGYhnepKnVcnmStiS4=";
-    })
   ];
 
   # Home Manager can also manage your environment variables through

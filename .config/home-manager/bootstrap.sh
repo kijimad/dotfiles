@@ -112,11 +112,21 @@ setup_github_ssh() {
         echo "  Skip: already logged in to GitHub CLI"
     fi
 
+    # Upload SSH key to GitHub
+    if [ -f "$HOME/.ssh/id_ed25519.pub" ]; then
+        echo "  Uploading SSH key to GitHub..."
+        gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)" || echo "  Note: Key may already be registered"
+    else
+        echo "  Error: SSH public key not found at $HOME/.ssh/id_ed25519.pub"
+        exit 1
+    fi
+
     # Test SSH connection
     if ssh -T -o StrictHostKeyChecking=no git@github.com 2>&1 | grep -q "successfully authenticated"; then
         echo "  Done: GitHub SSH connection successful"
     else
-        echo "  Warning: SSH connection test failed"
+        echo "  Error: SSH connection test failed"
+        exit 1
     fi
 }
 

@@ -1,0 +1,9 @@
+# VM images
+*.qcow2
+
+# ISO files
+*.iso
+
+# QEMU temporary files
+*.pid
+*.log

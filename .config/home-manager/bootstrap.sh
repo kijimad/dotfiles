@@ -118,7 +118,6 @@ setup_github_ssh() {
         set +e
         gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)"
         set -e
-        key_add_result=$?
     else
         echo "  Error: SSH public key not found at $HOME/.ssh/id_ed25519.pub"
         exit 1
@@ -249,15 +248,6 @@ setup_emacs() {
         echo "  Done: cloned .emacs.d"
     fi
 
-    # Clone cask
-    if [ -d "$HOME/.cask" ]; then
-        echo "  Skip: .cask already exists"
-    else
-        echo "  Cloning cask..."
-        git clone https://github.com/cask/cask.git "$HOME/.cask"
-        echo "  Done: cloned cask"
-    fi
-
     # Run cask install
     if ! command -v cask &> /dev/null; then
         echo "  Error: cask command not found"
@@ -265,7 +255,6 @@ setup_emacs() {
         return 1
     fi
 
-    echo "  Running cask install..."
     cd "$HOME/.emacs.d"
     cask install
     echo "  Done: cask install completed"

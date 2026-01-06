@@ -60,10 +60,6 @@ if [ -d "$HOME/.rbenv" ] ; then
     PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
-if [ -d "$HOME/.cask" ] ; then
-    PATH="$HOME/.cask/bin:$PATH"
-fi
-
 # for OpenGL
 if [ -d "/usr/lib/x86_64-linux-gnu/pkgconfig" ] ; then
     export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig

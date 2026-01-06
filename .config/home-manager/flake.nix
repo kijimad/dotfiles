@@ -37,5 +37,17 @@
           }
         ];
       };
+
+      homeConfigurations."white" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          ./home.nix
+          {
+            home.username = "white";
+            home.homeDirectory = "/home/white";
+          }
+        ];
+      };
     };
 }

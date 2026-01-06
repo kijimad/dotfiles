@@ -117,15 +117,17 @@ setup_github_ssh() {
         echo "  Uploading SSH key to GitHub..."
         set +e
         gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)"
-        key_add_result=$?
         set -e
+        key_add_result=$?
     else
         echo "  Error: SSH public key not found at $HOME/.ssh/id_ed25519.pub"
         exit 1
     fi
 
     # Test SSH connection
+    set +e
     ssh_output=$(ssh -T -o StrictHostKeyChecking=no git@github.com 2>&1 || true)
+    set -e
     if echo "$ssh_output" | grep -q "successfully authenticated"; then
         echo "  Done: GitHub SSH connection successful"
     else

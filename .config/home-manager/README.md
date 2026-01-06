@@ -2,10 +2,10 @@
 
 ```shell
 # 初回
-nix run home-manager -- switch --flake .#violet
+nix run home-manager -- switch
 
 # 以降
-home-manager switch --flake .#violet
+home-manager switch
 ```
 
 ```

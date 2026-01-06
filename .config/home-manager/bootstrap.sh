@@ -77,24 +77,11 @@ install_nix() {
 # home-manager を実行してパッケージをインストール（SSH鍵も自動生成される）
 run_home_manager() {
     echo "Running home-manager switch..."
-    local username=$(whoami)
-    cd "$HOME/dotfiles/nix"
-
-    if [ ! -f "flake.nix" ]; then
-        echo "  Error: flake.nix not found"
-        exit 1
-    fi
-
-    if ! grep -q "\"$username\"" flake.nix; then
-        echo "  Error: No configuration for user $username"
-        echo "  Available: violet, gray"
-        exit 1
-    fi
 
     # First run: use nix run with experimental features enabled
     echo "  Running initial home-manager switch..."
-    nix run home-manager -- switch --flake ".#$username"
-    home-manager switch --flake ".#$username"
+    nix run home-manager -- switch
+    home-manager switch
 
     echo "  Done"
 }

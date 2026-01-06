@@ -122,10 +122,11 @@ setup_github_ssh() {
     fi
 
     # Test SSH connection
-    if ssh -T -o StrictHostKeyChecking=no git@github.com 2>&1 | grep -q "successfully authenticated"; then
+    ssh_output=$(ssh -T -o StrictHostKeyChecking=no git@github.com 2>&1 || true)
+    if echo "$ssh_output" | grep -q "successfully authenticated"; then
         echo "  Done: GitHub SSH connection successful"
     else
-        echo "  Error: SSH connection test failed"
+        echo "  Error: SSH connection test failed $ssh_output"
         exit 1
     fi
 }

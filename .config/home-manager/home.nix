@@ -11,6 +11,7 @@
 
   # The home.packages option allows you to install Nix packages into your environment
   home.packages = with pkgs; [
+    (fcitx5-with-addons.override { addons = [ fcitx5-mozc ]; })
     awscli2
     cask
     claude-code
@@ -21,8 +22,6 @@
     docker-compose
     dunst
     emacsPackages.mozc
-    mozc
-    (qt6Packages.fcitx5-with-addons.override { addons = [ fcitx5-mozc ]; })
     fcitx5-gtk
     font-awesome
     gemini-cli
@@ -31,15 +30,16 @@
     git
     gnumake
     go
-    guake
     gocode-gomod
     golangci-lint
     google-chrome
     gopls
     gotools
+    guake
     jq
     libtool
     libvterm
+    mozc
     nodejs_24
     peco
     picom
@@ -47,6 +47,7 @@
     polybar
     postgresql
     python3
+    qemu-utils
     qemu_kvm
     redshift
     ripgrep
@@ -58,6 +59,7 @@
     typora
     unetbootin
     vlc
+    wget
 
     # Custom Go packages
     (buildGoModule {
@@ -160,7 +162,8 @@
     fcitx5 = {
       Unit.Description = "Fcitx5 input method";
       Service = {
-        ExecStart = "${pkgs.qt6Packages.fcitx5-with-addons.override { addons = [ pkgs.fcitx5-mozc ]; }}/bin/fcitx5";
+        Environment = "DISPLAY=:0";
+        ExecStart = "${pkgs.fcitx5-with-addons.override { addons = [ pkgs.fcitx5-mozc ]; }}/bin/fcitx5";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "default.target" ];

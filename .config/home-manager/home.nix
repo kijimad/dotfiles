@@ -56,6 +56,7 @@
     stow
     terraform
     tree
+    typescript-language-server
     typora
     unetbootin
     vlc

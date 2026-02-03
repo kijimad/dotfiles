@@ -44,6 +44,7 @@ cd ~/dotfiles/vm
 3. インストール後、手動でシャットダウン
 
 インストール完了後、VMをシャットダウンしてください。
+※フォーカスを外すには Ctrl + Alt + g
 
 ### 3. ベースイメージの初期設定（オプション）
 
@@ -96,7 +97,7 @@ cd ~/dotfiles/vm
 VM内でnix-setup.shをテスト:
 ```bash
 # dotfilesをクローン
-git clone https://github.com/<username>/dotfiles.git ~/dotfiles
+git clone https://github.com/kijimad/dotfiles.git ~/dotfiles
 
 # nix-setup.shを実行
 cd ~/dotfiles

@@ -96,6 +96,17 @@
 
   # User services
   systemd.user.services = {
+    # Home Manager switch on startup
+    home-manager-switch = {
+      Unit.Description = "Home Manager switch on startup";
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.home-manager}/bin/home-manager switch";
+        RemainAfterExit = true;
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+
     # Swap Caps Lock and Control keys
     setxkbmap = {
       Unit.Description = "Set keyboard layout and swap Caps Lock with Control";

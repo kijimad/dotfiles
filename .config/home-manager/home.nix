@@ -12,6 +12,10 @@
   # The home.packages option allows you to install Nix packages into your environment
   home.packages = with pkgs; [
     (fcitx5-with-addons.override { addons = [ fcitx5-mozc ]; })
+    # nix管理にしたいのだが、nixバージョンだとフォントがおかしくなる...
+    # guake
+    antimicrox
+    arandr
     awscli2
     cask
     claude-code
@@ -35,7 +39,7 @@
     google-chrome
     gopls
     gotools
-    guake
+    imagemagick
     jq
     libtool
     libvterm
@@ -61,6 +65,7 @@
     unetbootin
     vlc
     wget
+    xournalpp
 
     # Custom Go packages
     (buildGoModule {

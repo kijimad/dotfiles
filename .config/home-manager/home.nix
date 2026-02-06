@@ -53,6 +53,7 @@
     libvterm
     mozc
     nodejs_24
+    yarn
     peco
     picom
     playerctl

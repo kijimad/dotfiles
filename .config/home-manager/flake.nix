@@ -49,5 +49,18 @@
           }
         ];
       };
+
+      # 仕事用
+      homeConfigurations."kijimad" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          ./home.nix
+          {
+            home.username = "kijimad";
+            home.homeDirectory = "/home/kijimad";
+          }
+        ];
+      };
     };
 }

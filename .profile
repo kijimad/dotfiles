@@ -64,9 +64,3 @@ fi
 if [ -d "/usr/lib/x86_64-linux-gnu/pkgconfig" ] ; then
     export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 fi
-
-# Firefoxのスクロール
-export MOZ_USE_XINPUT2=1
-
-# Node17でエラーが出ることがある
-export NODE_OPTIONS=--openssl-legacy-provider

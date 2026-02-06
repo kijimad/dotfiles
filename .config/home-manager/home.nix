@@ -53,7 +53,6 @@
     libvterm
     mozc
     nodejs_24
-    yarn
     peco
     picom
     playerctl
@@ -73,7 +72,9 @@
     typora
     unetbootin
     vlc
+    vscode
     wget
+    yarn
     xournalpp
 
     # Custom Go packages

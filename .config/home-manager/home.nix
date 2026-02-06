@@ -26,7 +26,7 @@
     antimicrox
     arandr
     awscli2
-    cask
+    emacs.pkgs.cask
     claude-code
     cmake
     cmigemo

@@ -9,9 +9,18 @@
   # introduces backwards incompatible changes.
   home.stateVersion = "24.05";
 
+  # Input method configuration
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+      fcitx5-gtk
+    ];
+  };
+
   # The home.packages option allows you to install Nix packages into your environment
   home.packages = with pkgs; [
-    (fcitx5-with-addons.override { addons = [ fcitx5-mozc ]; })
     # nix管理にしたいのだが、nixバージョンだとフォントがおかしくなる...
     # guake
     antimicrox
@@ -26,7 +35,6 @@
     docker-compose
     dunst
     emacsPackages.mozc
-    fcitx5-gtk
     font-awesome
     gemini-cli
     gh
@@ -81,13 +89,6 @@
     })
   ];
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'
-  home.sessionVariables = {
-    GTK_IM_MODULE = "fcitx5";
-    QT_IM_MODULE = "fcitx5";
-    XMODIFIERS = "@im=fcitx5";
-  };
 
   # Prepend Nix profile to PATH
   home.sessionPath = [
@@ -167,8 +168,7 @@
     fcitx5 = {
       Unit.Description = "Fcitx5 input method";
       Service = {
-        Environment = "DISPLAY=:0";
-        ExecStart = "${pkgs.fcitx5-with-addons.override { addons = [ pkgs.fcitx5-mozc ]; }}/bin/fcitx5";
+        ExecStart = "${pkgs.qt6Packages.fcitx5-with-addons.override { addons = [ pkgs.fcitx5-mozc pkgs.fcitx5-gtk ]; }}/bin/fcitx5";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "default.target" ];

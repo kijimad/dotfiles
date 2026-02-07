@@ -116,18 +116,6 @@
       Install.WantedBy = [ "default.target" ];
     };
 
-    # Swap Caps Lock and Control keys
-    setxkbmap = {
-      Unit.Description = "Set keyboard layout and swap Caps Lock with Control";
-      Service = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:swapcaps";
-        RemainAfterExit = true;
-        Restart = "on-failure";
-      };
-      Install.WantedBy = [ "default.target" ];
-    };
-
     syncthing = {
       Unit.Description = "Syncthing";
       Service = {
@@ -219,4 +207,9 @@
   programs.git = {
     enable = true;
   };
+
+  # Swap Caps Lock and Control keys
+  xsession.initExtra = ''
+    ${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:swapcaps
+  '';
 }

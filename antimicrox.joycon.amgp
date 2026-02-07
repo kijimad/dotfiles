@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gamecontroller configversion="19" appversion="3.1.4">
+<gamecontroller configversion="19" appversion="3.5.1">
     <!--The SDL name for a joystick is included for informational purposes only.-->
-    <sdlname>PS5 Controller</sdlname>
+    <sdlname>Nintendo Switch Joy-Con (R)</sdlname>
     <!--The Unique ID for a joystick is included for informational purposes only.-->
-    <uniqueID>0300fd574c050000e60c00001181000013563302</uniqueID>
-    <stickAxisAssociation index="2" xAxis="3" yAxis="4"/>
+    <uniqueID>05006ea07e05000007200000000068021406819938c6ce988161</uniqueID>
     <stickAxisAssociation index="1" xAxis="1" yAxis="2"/>
+    <stickAxisAssociation index="2" xAxis="3" yAxis="4"/>
     <vdpadButtonAssociations index="1">
         <vdpadButtonAssociation axis="0" button="12" direction="1"/>
         <vdpadButtonAssociation axis="0" button="13" direction="4"/>
@@ -13,14 +13,46 @@
         <vdpadButtonAssociation axis="0" button="15" direction="2"/>
     </vdpadButtonAssociations>
     <names>
-        <controlstickname index="2">スティック 2</controlstickname>
-        <controlstickname index="1">スティック 1</controlstickname>
+        <controlstickname index="1">Stick 1</controlstickname>
+        <controlstickname index="2">Stick 2</controlstickname>
     </names>
     <sets>
         <set index="1">
+            <stick index="1">
+                <stickbutton index="1">
+                    <slots>
+                        <slot>
+                            <code>3</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="3">
+                    <slots>
+                        <slot>
+                            <code>1</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="5">
+                    <slots>
+                        <slot>
+                            <code>4</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="7">
+                    <slots>
+                        <slot>
+                            <code>2</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+            </stick>
             <stick index="2">
-                <calibrated>false</calibrated>
-                <summary></summary>
                 <stickbutton index="1">
                     <turbointerval>100</turbointerval>
                     <slots>
@@ -51,42 +83,6 @@
                         <slot>
                             <code>0x1000012</code>
                             <mode>keyboard</mode>
-                        </slot>
-                    </slots>
-                </stickbutton>
-            </stick>
-            <stick index="1">
-                <calibrated>false</calibrated>
-                <summary></summary>
-                <stickbutton index="1">
-                    <slots>
-                        <slot>
-                            <code>1</code>
-                            <mode>mousemovement</mode>
-                        </slot>
-                    </slots>
-                </stickbutton>
-                <stickbutton index="3">
-                    <slots>
-                        <slot>
-                            <code>4</code>
-                            <mode>mousemovement</mode>
-                        </slot>
-                    </slots>
-                </stickbutton>
-                <stickbutton index="5">
-                    <slots>
-                        <slot>
-                            <code>2</code>
-                            <mode>mousemovement</mode>
-                        </slot>
-                    </slots>
-                </stickbutton>
-                <stickbutton index="7">
-                    <slots>
-                        <slot>
-                            <code>3</code>
-                            <mode>mousemovement</mode>
                         </slot>
                     </slots>
                 </stickbutton>
@@ -125,19 +121,45 @@
                     </slots>
                 </dpadbutton>
             </dpad>
-            <trigger index="6">
-                <center_value>0</center_value>
-                <min_value>-32767</min_value>
-                <max_value>32767</max_value>
+            <trigger index="5">
                 <throttle>positivehalf</throttle>
             </trigger>
-            <trigger index="5">
-                <center_value>0</center_value>
-                <min_value>-32767</min_value>
-                <max_value>32767</max_value>
+            <trigger index="6">
                 <throttle>positivehalf</throttle>
             </trigger>
             <button index="1">
+                <slots>
+                    <slot>
+                        <code>4</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="2">
+                <slots>
+                    <slot>
+                        <code>0x1000014</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="3">
+                <slots>
+                    <slot>
+                        <code>0x1000012</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="4">
+                <slots>
+                    <slot>
+                        <code>5</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="19">
                 <slots>
                     <slot>
                         <code>1</code>

@@ -8,9 +8,14 @@ nix run home-manager -- switch
 home-manager switch
 ```
 
-```
+```shell
 # 個別のハッシュを得るときは nix-prefetch-github を使うといいらしい
 nix-shell -p nix-prefetch-github --run "nix-prefetch-github kijimad xruler --rev <COMMIT_SHA>"
+```
+
+```shell
+# パッケージを更新する
+nix flake update
 ```
 
 ## 仮想イメージで試す手順

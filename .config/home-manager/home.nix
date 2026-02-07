@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  # 非NixOS Linux用の設定
+  targets.genericLinux.enable = true;
+
+  # フォント設定
+  fonts.fontconfig.enable = true;
+
   # Allow unfree packages (needed for google-chrome)
   nixpkgs.config.allowUnfree = true;
 
@@ -21,12 +27,9 @@
 
   # The home.packages option allows you to install Nix packages into your environment
   home.packages = with pkgs; [
-    # nix管理にしたいのだが、nixバージョンだとフォントがおかしくなる...
-    # guake
     antimicrox
     arandr
     awscli2
-    emacs.pkgs.cask
     claude-code
     cmake
     cmigemo
@@ -34,6 +37,7 @@
     delve
     docker-compose
     dunst
+    emacs.pkgs.cask
     emacsPackages.mozc
     font-awesome
     gemini-cli
@@ -47,6 +51,8 @@
     google-chrome
     gopls
     gotools
+    # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する
+    guake
     imagemagick
     jq
     libtool
@@ -171,6 +177,15 @@
       Unit.Description = "Fcitx5 input method";
       Service = {
         ExecStart = "${pkgs.qt6Packages.fcitx5-with-addons.override { addons = [ pkgs.fcitx5-mozc pkgs.fcitx5-gtk ]; }}/bin/fcitx5";
+        Restart = "on-failure";
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+
+    guake = {
+      Unit.Description = "Guake drop-down terminal";
+      Service = {
+        ExecStart = "${pkgs.guake}/bin/guake";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "default.target" ];

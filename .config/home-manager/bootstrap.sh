@@ -201,15 +201,13 @@ init_crontab() {
     fi
 }
 
-# Docker をインストールする(apt)
+# Docker をインストールする(公式スクリプト)
 init_docker() {
     echo "Initializing Docker..."
 
-    # Install Docker via apt if not installed
     if ! command -v docker &> /dev/null; then
-        echo "  Installing Docker via apt..."
-        sudo apt-get update
-        sudo apt-get install -y docker.io
+        echo "  Installing Docker via get.docker.com..."
+        curl -fsSL https://get.docker.com | sh
         echo "  Done: Docker installed"
     else
         echo "  Skip: docker already installed"

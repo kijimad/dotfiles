@@ -15,6 +15,13 @@
   # introduces backwards incompatible changes.
   home.stateVersion = "24.05";
 
+
+  # Xresources settings
+  # Emacs内では mozc.el を使っているから、OS側のインプットメソッドは使用しない
+  xresources.extraConfig = ''
+    Emacs*useXIM: false
+  '';
+
   # Input method configuration
   i18n.inputMethod = {
     enable = true;

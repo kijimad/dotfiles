@@ -15,6 +15,13 @@
   # introduces backwards incompatible changes.
   home.stateVersion = "24.05";
 
+  # HiDPI cursor settings (for 4K displays)
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 64;
+    x11.enable = true;
+  };
 
   # Xresources settings
   # Emacs内では mozc.el を使っているから、OS側のインプットメソッドは使用しない

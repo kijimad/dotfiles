@@ -15,6 +15,20 @@
   # introduces backwards incompatible changes.
   home.stateVersion = "24.05";
 
+  # HiDPI cursor settings (for 4K displays)
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 64;
+    x11.enable = true;
+  };
+
+  # Xresources settings
+  # Emacs内では mozc.el を使っているから、OS側のインプットメソッドは使用しない
+  xresources.extraConfig = ''
+    Emacs*useXIM: false
+  '';
+
   # Input method configuration
   i18n.inputMethod = {
     enable = true;
@@ -48,7 +62,8 @@
     go
     gocode-gomod
     golangci-lint
-    google-chrome
+    # nix経由でインストールするとハードウェアアクセラレータが使えないのでとりあえず
+    # google-chrome
     gopls
     gotools
     # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する
@@ -112,18 +127,6 @@
         Type = "oneshot";
         ExecStart = "${pkgs.home-manager}/bin/home-manager switch";
         RemainAfterExit = true;
-      };
-      Install.WantedBy = [ "default.target" ];
-    };
-
-    # Swap Caps Lock and Control keys
-    setxkbmap = {
-      Unit.Description = "Set keyboard layout and swap Caps Lock with Control";
-      Service = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:swapcaps";
-        RemainAfterExit = true;
-        Restart = "on-failure";
       };
       Install.WantedBy = [ "default.target" ];
     };
@@ -219,4 +222,9 @@
   programs.git = {
     enable = true;
   };
+
+  # Swap Caps Lock and Control keys
+  xsession.initExtra = ''
+    ${pkgs.xorg.setxkbmap}/bin/setxkbmap -option ctrl:swapcaps
+  '';
 }

@@ -62,7 +62,8 @@
     go
     gocode-gomod
     golangci-lint
-    google-chrome
+    # nix経由でインストールするとハードウェアアクセラレータが使えないのでとりあえず
+    # google-chrome
     gopls
     gotools
     # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する

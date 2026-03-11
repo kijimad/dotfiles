@@ -30,29 +30,11 @@
 
  ## フォルダ構成
 
- トップレベルは以下の2カテゴリで分類する：
-
- - `domain/` … 業務ドメイン・仕様・設計に関する知識
- - `tech/` … 技術・ライブラリ・実装パターンに関する知識
-
- `tech/` はサブカテゴリでさらに分類する：
-
- ```text
- memories/
- ├── domain/
- │   └── target-status-spec.md
- └── tech/
-     ├── typescript/
-     ├── jest/
-     ├── vitest/
-     └── nest/
- ```
-
  ガイドライン:
- - ファイル名は `YYYYMMDD_kebab-case-description.md` 形式にする（例: `20260305_expect-any-antipattern.md`）
- - フォルダ名は kebab-case
+
+ - ディレクトリは作らずフラットにファイル作成する
+ - ファイル名は `%Y%m%dT%H%M%S--description.md` 形式にする（例: `20251008T013000--aws.md`）
  - 知識ベースの進化に合わせて統合・再整理する
- - 上記に当てはまらない場合は自由にカテゴリを追加してよい
 
  ## フロントマター
 
@@ -103,21 +85,17 @@
  # 6. 関連するメモリファイルを読む
  ```
 
- **注意:** メモリファイルは gitignore されているため、ripgrep では `--no-ignore` と `--hidden` フラグを使うこと。
-
  ## 操作
 
  ### 保存
 
  1. 内容に適したカテゴリを決める
- 2. 既存カテゴリが合うか確認し、なければ新規作成
- 3. 必須フロントマターを含めてファイルを書く（現在日付は `date +%Y-%m-%d` で取得）
+ 2. 必須フロントマターを含めてファイルを書く（現在日付は `date +"%Y%m%dT%H%M%S"` で取得）
 
  ```bash
- mkdir -p .claude/skills/agent-memory/memories/category-name/
- # 注意: 上書きを避けるため、ファイルが存在しないか確認してから書く
- # ファイル名は $(date +%Y%m%d)_description.md 形式
- cat > .claude/skills/agent-memory/memories/category-name/$(date +%Y%m%d)_description.md << 'EOF'
+ mkdir -p ~/Project/q
+ # ファイル名は $(date +"%Y%m%dT%H%M%S")--description.md 形式
+ cat > ~/Project/q/$(date +"%Y%m%dT%H%M%S")--description.md << 'EOF'
  ---
  summary: "このメモリの簡潔な説明"
  created: 2025-01-15

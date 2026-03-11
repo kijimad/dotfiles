@@ -68,19 +68,19 @@
 
  ```bash
  # 1. カテゴリ一覧を確認
- ls .claude/skills/agent-memory/memories/
+ ls ~/Project/q/
 
  # 2. すべてのサマリーを表示
- rg "^summary:" .claude/skills/agent-memory/memories/ --no-ignore --hidden
+ rg "^summary:" ~/Project/q/ --no-ignore --hidden
 
  # 3. キーワードでサマリーを検索
- rg "^summary:.*keyword" .claude/skills/agent-memory/memories/ --no-ignore --hidden -i
+ rg "^summary:.*keyword" ~/Project/q/ --no-ignore --hidden -i
 
  # 4. タグで検索
- rg "^tags:.*keyword" .claude/skills/agent-memory/memories/ --no-ignore --hidden -i
+ rg "^tags:.*keyword" ~/Project/q/ --no-ignore --hidden -i
 
  # 5. 全文検索（サマリー検索では不十分な場合）
- rg "keyword" .claude/skills/agent-memory/memories/ --no-ignore --hidden -i
+ rg "keyword" ~/Project/q/ --no-ignore --hidden -i
 
  # 6. 関連するメモリファイルを読む
  ```
@@ -112,9 +112,9 @@
  - **更新**: 情報が変わった場合は内容を更新し、フロントマターに `updated` フィールドを追加する
  - **削除**: 不要になったメモリは削除する
    ```bash
-   trash .claude/skills/agent-memory/memories/category-name/filename.md
+   trash ~/Project/q/category-name/filename.md
    # 空のカテゴリフォルダも削除
-   rmdir .claude/skills/agent-memory/memories/category-name/ 2>/dev/null || true
+   rmdir ~/Project/q/category-name/ 2>/dev/null || true
    ```
  - **統合**: 関連するメモリが増えてきたらマージする
  - **再整理**: 知識ベースの進化に合わせて適切なカテゴリへ移動する

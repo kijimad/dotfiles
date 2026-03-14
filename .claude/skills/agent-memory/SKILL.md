@@ -7,7 +7,7 @@
 
  会話をまたいで知識を保存するための永続メモリスペース。
 
- **場所:** `.claude/skills/agent-memory/memories/`
+ **場所:** `~/Project/q/`
 
  ## 積極的な活用
 

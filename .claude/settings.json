@@ -4,6 +4,7 @@
       "List(*)",
       "Fetch(https://*)",
       "Edit(*)",
+      "Write(~/Project/q/**)",
       "Bash(git:*)",
       "Bash(npm:*)",
       "Bash(ls:*)",

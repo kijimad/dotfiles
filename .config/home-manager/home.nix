@@ -41,6 +41,7 @@
 
   # The home.packages option allows you to install Nix packages into your environment
   home.packages = with pkgs; [
+    # google-chrome # nix経由でインストールするとハードウェアアクセラレータが使えないのでとりあえず
     antimicrox
     arandr
     awscli2
@@ -62,17 +63,15 @@
     go
     gocode-gomod
     golangci-lint
-    # nix経由でインストールするとハードウェアアクセラレータが使えないのでとりあえず
-    # google-chrome
     gopls
     gotools
-    # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する
-    guake
+    guake # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する
     imagemagick
     jq
     libtool
     libvterm
     mozc
+    nodePackages.typescript
     nodejs_24
     peco
     picom
@@ -95,8 +94,8 @@
     vlc
     vscode
     wget
-    yarn
     xournalpp
+    yarn
 
     # Custom Go packages
     (buildGoModule {

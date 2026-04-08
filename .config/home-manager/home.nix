@@ -73,7 +73,7 @@
     libtool
     libvterm
     mozc
-    nodePackages.typescript
+    typescript
     nodejs_24
     peco
     picom

@@ -61,5 +61,9 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "$HOME/dotfiles/scripts/statusline.sh"
+  }
 }

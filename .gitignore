@@ -2,3 +2,5 @@
 .fonts/ヒラギノ*
 .fonts/Source*
 .config/shepherd/shepherd.log
+/.agent-shell/
+.npmrc

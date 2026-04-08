@@ -46,9 +46,11 @@
     arandr
     awscli2
     claude-code
+    claude-code-acp
     cmake
     cmigemo
     curl
+    dbeaver-bin
     delve
     docker-compose
     dunst
@@ -92,7 +94,7 @@
     typora
     unetbootin
     vlc
-    vscode
+    # vscode
     wget
     xournalpp
     yarn
@@ -115,6 +117,7 @@
   # Prepend Nix profile to PATH
   home.sessionPath = [
     "$HOME/.nix-profile/bin"
+    "$HOME/.npm-global/bin"
   ];
 
   # User services
@@ -204,6 +207,14 @@
       fi
     '';
   };
+
+  # npm configuration
+  home.file.".npmrc".text = ''
+    init-author-name=Kijima Daigo
+    init-author-email=norimaking777@gmail.com
+    init-author-url=https://github.com/kijimad
+    prefix=${config.home.homeDirectory}/.npm-global
+  '';
 
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;

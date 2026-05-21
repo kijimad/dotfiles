@@ -66,7 +66,7 @@
     gocode-gomod
     golangci-lint
     gopls
-    gotools
+    (pkgs.lib.setPrio 10 gotools)
     guake # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する
     imagemagick
     jq
@@ -98,6 +98,9 @@
     wget
     xournalpp
     yarn
+
+    # Bluetooth
+    bluez
 
     # Custom Go packages
     (buildGoModule {
@@ -206,6 +209,7 @@
         ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_ed25519
       fi
     '';
+
   };
 
   # npm configuration

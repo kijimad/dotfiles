@@ -1,8 +1,9 @@
 #!/bin/sh
 set -x
 
-# Terminate already running bar instances
+# Terminate already running bar instances and tail scripts
 killall -q polybar
+killall -q -f pomodoro-bar.sh
 
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done

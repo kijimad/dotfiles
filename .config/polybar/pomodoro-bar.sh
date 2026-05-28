@@ -4,31 +4,30 @@
 # This script = display, animation, colors
 #
 
-trap 'exit 0' TERM INT HUP PIPE
+cleanup() { kill 0; exit 0; }
+trap cleanup TERM INT HUP PIPE
 
 FETCH_INTERVAL=25  # ticks between emacsclient calls (25 * 0.2s = 5s)
 RENDER_INTERVAL=0.1
-GAUGE_LEN=30
+BAR_WIDTH=20       # character width of the progress bar / marquee area
+MARQUEE_PAD="　　　"  # full-width space gap for loop scroll
 
 # State from Emacs (JSON fields)
 state="off" remaining=0 total=0 heading="" clocked=0 effort="" points=0
 frame=0 tick=0
 
 # Gauge cache (rebuilt on fetch)
-gauge_done=0 gauge_will=0 gauge_color="" gauge_highlight=""
-gauge_base="" gauge_rest=""
+gauge_done=0 gauge_fg=""
 
 fetch() {
     local raw json
     raw=$(emacsclient -e '(kd/org-pomodoro-json)' 2>/dev/null)
     [ -z "$raw" ] && return
 
-    # Strip outer quotes and unescape from emacsclient output
     json="${raw#\"}"
     json="${json%\"}"
     json="${json//\\\"/\"}"
 
-    # Parse all fields in one jq call
     eval "$(echo "$json" | jq -r '
         "state=\(.state | ltrimstr(":"))",
         "remaining=\(.remaining)",
@@ -39,44 +38,54 @@ fetch() {
         "points=\(.points)"
     ')"
 
-    # Rebuild gauge cache
+    # Gauge progress (how many chars are "filled")
     local elapsed_pct=0
     [ "$total" -gt 0 ] && elapsed_pct=$(( (total - remaining) * 100 / total ))
-    gauge_done=$(( elapsed_pct * GAUGE_LEN / 100 ))
-    gauge_will=$(( GAUGE_LEN - gauge_done ))
+    gauge_done=$(( elapsed_pct * BAR_WIDTH / 100 ))
 
-    gauge_color="#4caf50"; gauge_highlight="#b9f6ca"
+    # Color for overline/underline/text on filled portion
+    gauge_fg="#4caf50"
     if [ "$elapsed_pct" -ge 75 ]; then
-        gauge_color="#f44336"; gauge_highlight="#ff8a80"
+        gauge_fg="#f44336"
     elif [ "$elapsed_pct" -ge 50 ]; then
-        gauge_color="#ff9800"; gauge_highlight="#ffe082"
+        gauge_fg="#ff9800"
     fi
-
-    # Pre-build base filled and empty strings
-    gauge_base=""; gauge_rest=""
-    [ "$gauge_done" -gt 0 ] && gauge_base=$(printf '█%.0s' $(seq 1 "$gauge_done"))
-    [ "$gauge_will" -gt 0 ] && gauge_rest=$(printf '░%.0s' $(seq 1 "$gauge_will"))
 }
 
-gauge() {
-    # Note: outputs ...  without closing     # Caller must switch font explicitly after gauge (e.g. )
-    if [ "$gauge_done" -eq 0 ]; then
-        echo -n "%{F#333333}${gauge_rest}%{F-}"
-        return
-    fi
+# Scrolling text, padded to BAR_WIDTH
+marquee() {
+    local text="$1"
+    while [ ${#text} -lt "$BAR_WIDTH" ]; do
+        text+="　"
+    done
+    local looped="${text}${MARQUEE_PAD}${text}"
+    local total_len=$(( ${#text} + ${#MARQUEE_PAD} ))
+    local offset=$(( (frame / 2) % total_len ))
+    echo -n "${looped:$offset:$BAR_WIDTH}"
+}
 
-    local pos=$(( frame % (gauge_done + 2) ))
+# Progress bar: ▓ as fill, task text overlaid (replaces spaces)
+progress_bar() {
+    local text
+    text=$(marquee "$1")
 
-    if [ "$pos" -ge "$gauge_done" ]; then
-        echo -n "%{F${gauge_color}}${gauge_base}%{F-}%{F#333333}${gauge_rest}%{F-}"
-    else
-        local before=${gauge_base:0:$pos}
-        local shim_end=$(( pos + 2 ))
-        [ "$shim_end" -gt "$gauge_done" ] && shim_end=$gauge_done
-        local shimmer=${gauge_base:$pos:$((shim_end - pos))}
-        local after=${gauge_base:$shim_end}
-        echo -n "%{F${gauge_color}}${before}%{F-}%{F${gauge_highlight}}${shimmer}%{F-}%{F${gauge_color}}${after}%{F-}%{F#333333}${gauge_rest}%{F-}"
-    fi
+    local out=""
+    for (( i=0; i<BAR_WIDTH; i++ )); do
+        local ch="${text:$i:1}"
+        local color
+        if [ "$i" -lt "$gauge_done" ]; then
+            color="$gauge_fg"
+        else
+            color="#333333"
+        fi
+        # Show text char or █ for spaces
+        if [ "$ch" = " " ] || [ "$ch" = "　" ] || [ -z "$ch" ]; then
+            out+="%{F${color}}█%{F-}"
+        else
+            out+="%{F#aaaaaa}${ch}%{F-}"
+        fi
+    done
+    echo -n "$out"
 }
 
 points_display() {
@@ -107,7 +116,7 @@ render() {
         short-break|long-break)
             local label="Short break"
             [ "$state" = "long-break" ] && label="Long break"
-            echo "$(gauge) ${label}: $(( remaining / 60 ))m${pts}%{T-}"
+            echo "$(progress_bar "$label") $(( remaining / 60 ))m${pts}"
             ;;
         overtime)
             if [ $(( frame % 5 )) -lt 3 ]; then
@@ -117,10 +126,10 @@ render() {
             fi
             ;;
         pomodoro)
-            echo "$(gauge) $(( remaining / 60 ))m %{F#000000}${heading}%{F-}${pts}%{T-}"
+            echo "$(progress_bar "$heading") $(( remaining / 60 ))m${pts}"
             ;;
         clocking)
-            echo "(${clocked}m) %{F#000000}${heading}%{F-}${pts}%{T-}"
+            echo "(${clocked}m) %{F#000000}$(marquee "$heading")%{F-}${pts}"
             ;;
     esac
     frame=$(( frame + 1 ))

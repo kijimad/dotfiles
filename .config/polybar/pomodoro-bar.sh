@@ -94,11 +94,11 @@ points_display() {
     local m=$(( all_min % 60 ))
     local eff=""
     if [ -n "$effort" ] && [ "$clocked" -gt 0 ]; then
-        eff="[${clocked}m/${effort}] "
+        eff="[${clocked}m|${effort}] "
     elif [ "$clocked" -gt 0 ]; then
-        eff="[effort not set] "
+        eff=""
     fi
-    printf " %s%dpts/%02dh%02dm" "$eff" "$points" "$h" "$m"
+    printf " %s%dpts|%02dh%02dm" "$eff" "$points" "$h" "$m"
 }
 
 render() {

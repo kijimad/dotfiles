@@ -13,51 +13,39 @@
         <vdpadButtonAssociation axis="0" button="15" direction="2"/>
     </vdpadButtonAssociations>
     <names>
-        <controlstickname index="2">Stick 2</controlstickname>
-        <controlstickname index="1">Stick 1</controlstickname>
+        <controlstickname index="2">スティック 2</controlstickname>
+        <controlstickname index="1">スティック 1</controlstickname>
     </names>
     <sets>
         <set index="1">
             <stick index="1">
-                <stickbutton index="3">
+                <stickbutton index="5">
                     <mousespeedx>100</mousespeedx>
                     <mousespeedy>100</mousespeedy>
                     <slots>
                         <slot>
-                            <code>4</code>
-                            <mode>mousemovement</mode>
-                        </slot>
-                    </slots>
-                </stickbutton>
-                <stickbutton index="1">
-                    <mousespeedx>100</mousespeedx>
-                    <mousespeedy>100</mousespeedy>
-                    <slots>
-                        <slot>
-                            <code>1</code>
-                            <mode>mousemovement</mode>
+                            <code>5</code>
+                            <mode>mousebutton</mode>
                         </slot>
                     </slots>
                 </stickbutton>
                 <stickbutton index="7">
                     <mousespeedx>100</mousespeedx>
                     <mousespeedy>100</mousespeedy>
-                    <slots>
-                        <slot>
-                            <code>3</code>
-                            <mode>mousemovement</mode>
-                        </slot>
-                    </slots>
                 </stickbutton>
-                <stickbutton index="5">
+                <stickbutton index="1">
                     <mousespeedx>100</mousespeedx>
                     <mousespeedy>100</mousespeedy>
                     <slots>
                         <slot>
-                            <code>2</code>
-                            <mode>mousemovement</mode>
+                            <code>4</code>
+                            <mode>mousebutton</mode>
                         </slot>
                     </slots>
+                </stickbutton>
+                <stickbutton index="3">
+                    <mousespeedx>100</mousespeedx>
+                    <mousespeedy>100</mousespeedy>
                 </stickbutton>
             </stick>
             <trigger index="6">
@@ -75,6 +63,22 @@
                     </slots>
                 </triggerbutton>
             </trigger>
+            <button index="10">
+                <slots>
+                    <slot>
+                        <code>4</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="2">
+                <slots>
+                    <slot>
+                        <code>0x1000014</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
             <button index="1">
                 <slots>
                     <slot>
@@ -83,11 +87,11 @@
                     </slot>
                 </slots>
             </button>
-            <button index="10">
+            <button index="3">
                 <slots>
                     <slot>
-                        <code>4</code>
-                        <mode>mousebutton</mode>
+                        <code>0x1000012</code>
+                        <mode>keyboard</mode>
                     </slot>
                 </slots>
             </button>

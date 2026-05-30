@@ -107,11 +107,7 @@ render() {
 
     case "$state" in
         off)
-            if [ "$points" -gt 0 ]; then
-                echo "%{F#666666}%{F-}${pts}"
-            else
-                echo "%{F#666666}%{F-}"
-            fi
+            echo "%{F#666666}%{F-}${pts}"
             ;;
         short-break|long-break)
             local label="Short break"

@@ -22,6 +22,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": "~/dotfiles/.config/polybar/claude-code-status.sh stopped"
+          },
+          {
+            "type": "command",
             "command": "~/dotfiles/scripts/notify.sh 'Claude: 通知'"
           },
           {
@@ -31,10 +35,25 @@
         ]
       }
     ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/.config/polybar/claude-code-status.sh active"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",
         "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/.config/polybar/claude-code-status.sh stopped"
+          },
           {
             "type": "command",
             "command": "~/dotfiles/scripts/notify.sh 'Claude: 終了'"

@@ -5,7 +5,7 @@
 #
 
 STATUS_DIR=/tmp/claude-code-status
-STALE_SEC=30
+STALE_SEC=1800
 INTERVAL=0.1
 
 frames=("▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" "▇" "▆" "▅" "▄" "▃" "▂")

@@ -6,4 +6,4 @@ STATUS_DIR=/tmp/claude-code-status
 PROJECT=$(basename "$PWD")
 
 mkdir -p "$STATUS_DIR"
-echo "$1" > "$STATUS_DIR/$PROJECT"
+printf '%s' "$1" > "$STATUS_DIR/$PROJECT"

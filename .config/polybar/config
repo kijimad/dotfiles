@@ -56,7 +56,7 @@ font-3 = "Fira Mono:size=10;-3"
 
 modules-left = exwm-workspace
 modules-center = pomodoro workday claude-code
-modules-right = nowplaying date battery
+modules-right = nowplaying date battery screen-lock
 ; eth
 
 ; override-redirect = true
@@ -392,6 +392,13 @@ type = custom/ipc
 hook-0 = emacsclient -e "(kd/workday-gauge)" | tr -d '"'
 initial = 1
 format-underline = ${colors.primary}
+
+[module/screen-lock]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = ${colors.foreground-alt}
+content-underline = ${colors.primary}
+click-left = cinnamon-screensaver-command -l
 
 [module/claude-code]
 type = custom/script

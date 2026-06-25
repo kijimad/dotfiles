@@ -45,6 +45,7 @@
     antimicrox
     arandr
     awscli2
+    bun
     claude-code
     claude-code-acp
     cmake

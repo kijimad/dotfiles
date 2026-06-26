@@ -60,7 +60,7 @@
           },
           {
             "type": "command",
-            "command": "XDG_RUNTIME_DIR='/run/user/1000' aplay ~/dotfiles/sounds/pickup.wav"
+            "command": "XDG_RUNTIME_DIR='/run/user/1000' aplay ~/dotfiles/sounds/area-transition.wav"
           }
         ]
       }

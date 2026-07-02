@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
 
+let
+  # nixpkgs-unstable
+  nixpkgs-unstable = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
+    sha256 = "0jfrm4wdjfg8d45b4gnxrcwa8kzclv9qisbv68v19d6fd4mdgk0h";
+  }) { system = "x86_64-linux"; config.allowUnfree = true; };
+in
 {
   # 非NixOS Linux用の設定
   targets.genericLinux.enable = true;
@@ -46,8 +53,8 @@
     arandr
     awscli2
     bun
-    claude-code
-    claude-code-acp
+    nixpkgs-unstable.claude-code
+    nixpkgs-unstable.claude-code-acp
     cmake
     cmigemo
     curl
@@ -77,6 +84,7 @@
     typescript
     nodejs_24
     peco
+    inkscape
     picom
     playerctl
     polybar
@@ -95,7 +103,7 @@
     typora
     unetbootin
     vlc
-    # vscode
+    vscode
     wget
     xournalpp
     yarn

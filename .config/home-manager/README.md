@@ -16,6 +16,11 @@ nix-shell -p nix-prefetch-github --run "nix-prefetch-github kijimad xruler --rev
 ```shell
 # パッケージを更新する
 nix flake update
+
+# 定期実行
+systemctl --user enable --now daily-news.timer
+# 次回実行時刻を確認
+systemctl --user list-timers
 ```
 
 ## 仮想イメージで試す手順

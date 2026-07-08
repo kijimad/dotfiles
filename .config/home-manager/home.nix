@@ -59,7 +59,9 @@ in
     cmigemo
     curl
     dbeaver-bin
+    delta
     delve
+    difftastic
     docker-compose
     dunst
     emacs.pkgs.cask

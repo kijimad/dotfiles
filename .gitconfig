@@ -10,3 +10,15 @@
 	dmb = "!f () { git checkout $1; git branch --merged|egrep -v '\\*|develop|main|master'|xargs git branch -d; };f && git fetch --prune;"
 [core]
 	quotepath = false
+	pager = delta
+[delta]
+	navigate = true          # n / N でファイル間をジャンプ
+	# side-by-side = true      # 左右2画面。狭い端末では false 推奨
+	hyperlinks = true        # ファイルパスをクリック可能に
+[interactive]
+	diffFilter = delta --color-only
+[diff]
+	colorMoved = default     # 移動した行を別色で表示
+	algorithm = histogram    # 良質な差分アルゴリズム
+	renames = copies         # リネーム/コピーを追跡
+	mnemonicPrefix = true    # i/w/c/o で差分の由来を明示

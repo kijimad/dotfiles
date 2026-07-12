@@ -30,7 +30,7 @@
           },
           {
             "type": "command",
-            "command": "XDG_RUNTIME_DIR='/run/user/1000' aplay ~/dotfiles/sounds/suzu.wav"
+            "command": "XDG_RUNTIME_DIR='/run/user/1000' ~/.nix-profile/bin/aplay ~/dotfiles/sounds/suzu.wav"
           }
         ]
       }
@@ -60,7 +60,7 @@
           },
           {
             "type": "command",
-            "command": "XDG_RUNTIME_DIR='/run/user/1000' aplay ~/dotfiles/sounds/area-transition.wav"
+            "command": "XDG_RUNTIME_DIR='/run/user/1000' ~/.nix-profile/bin/aplay ~/dotfiles/sounds/area-transition.wav"
           }
         ]
       }
@@ -91,5 +91,8 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }

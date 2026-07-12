@@ -49,6 +49,7 @@ in
   # The home.packages option allows you to install Nix packages into your environment
   home.packages = with pkgs; [
     # google-chrome # nix経由でインストールするとハードウェアアクセラレータが使えないのでとりあえず
+    alsa-utils
     antimicrox
     arandr
     awscli2

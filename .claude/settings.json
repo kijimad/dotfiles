@@ -90,6 +90,7 @@
       }
     }
   },
+  "outputStyle": "Explanatory",
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,

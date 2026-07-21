@@ -4,7 +4,7 @@ let
   # nixpkgs-unstable
   nixpkgs-unstable = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-    sha256 = "0jfrm4wdjfg8d45b4gnxrcwa8kzclv9qisbv68v19d6fd4mdgk0h";
+    sha256 = "1lxfhfgiv1sz2v7fg43gny57sa6wf59n98q7ldsyb2p06f4sal7w";
   }) { system = "x86_64-linux"; config.allowUnfree = true; };
 in
 {
@@ -75,7 +75,6 @@ in
     gnumake
     go
     gocode-gomod
-    golangci-lint
     gopls
     (pkgs.lib.setPrio 10 gotools)
     guake # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する
@@ -97,7 +96,7 @@ in
     qemu_kvm
     redshift
     ripgrep
-    silver-searcher
+    silver-searcher-ng
     sqlite
     stow
     terraform

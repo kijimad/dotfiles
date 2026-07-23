@@ -60,6 +60,12 @@
           },
           {
             "type": "command",
+            "command": "~/dotfiles/scripts/discord.sh",
+            "async": true,
+            "timeout": 10
+          },
+          {
+            "type": "command",
             "command": "XDG_RUNTIME_DIR='/run/user/1000' ~/.nix-profile/bin/aplay ~/dotfiles/sounds/area-transition.wav"
           }
         ]

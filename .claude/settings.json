@@ -61,8 +61,8 @@
           {
             "type": "command",
             "command": "~/dotfiles/scripts/discord.sh",
-            "async": true,
-            "timeout": 10
+            "timeout": 10,
+            "async": true
           },
           {
             "type": "command",
@@ -100,6 +100,7 @@
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "agentPushNotifEnabled": true,
-  "inputNeededNotifEnabled": true
+  "skipWorkflowUsageWarning": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
 }

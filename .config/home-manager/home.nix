@@ -23,6 +23,7 @@ in
   home.stateVersion = "24.05";
 
   # HiDPI cursor settings (for 4K displays)
+  home.pointerCursor.enable = true;
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;

@@ -78,6 +78,7 @@ in
     gocode-gomod
     gopls
     (pkgs.lib.setPrio 10 gotools)
+    graphify
     guake # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する
     imagemagick
     jq

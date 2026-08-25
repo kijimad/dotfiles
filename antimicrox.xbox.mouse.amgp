@@ -78,7 +78,7 @@
             <button index="10">
                 <slots>
                     <slot>
-                        <code>4</code>
+                        <code>1</code>
                         <mode>mousebutton</mode>
                     </slot>
                 </slots>
@@ -92,6 +92,14 @@
                 </slots>
             </button>
             <button index="1">
+                <slots>
+                    <slot>
+                        <code>1</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="4">
                 <slots>
                     <slot>
                         <code>1</code>

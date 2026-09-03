@@ -59,11 +59,13 @@ in
     nixpkgs-unstable.claude-code-acp
     cmake
     cmigemo
+    inotify-tools
     curl
     dbeaver-bin
     delta
     delve
     difftastic
+    herdr
     docker-compose
     dunst
     emacs.pkgs.cask
@@ -239,7 +241,7 @@ in
   # Emacs configuration
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs30;
+    package = pkgs.emacs;
     extraPackages = epkgs: with epkgs; [
       mozc
     ];

@@ -13,54 +13,23 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+
+      # ユーザー名を受け取って homeManagerConfiguration を返すヘルパー。
+      mkHome = user: home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          ./home.nix
+          {
+            home.username = user;
+            home.homeDirectory = "/home/${user}";
+          }
+        ];
+      };
+
+      # アカウントを追加したいときは、このリストに名前を足す
+      users = [ "violet" "gray" "blue" "kijimad" ]; # kijimad は仕事用
     in {
-      homeConfigurations."violet" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          ./home.nix
-          {
-            home.username = "violet";
-            home.homeDirectory = "/home/violet";
-          }
-        ];
-      };
-
-      homeConfigurations."gray" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          ./home.nix
-          {
-            home.username = "gray";
-            home.homeDirectory = "/home/gray";
-          }
-        ];
-      };
-
-      homeConfigurations."white" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          ./home.nix
-          {
-            home.username = "white";
-            home.homeDirectory = "/home/white";
-          }
-        ];
-      };
-
-      # 仕事用
-      homeConfigurations."kijimad" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          ./home.nix
-          {
-            home.username = "kijimad";
-            home.homeDirectory = "/home/kijimad";
-          }
-        ];
-      };
+      homeConfigurations = nixpkgs.lib.genAttrs users mkHome;
     };
 }

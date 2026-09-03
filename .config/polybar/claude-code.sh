@@ -1,10 +1,10 @@
 #!/bin/bash
 #
 # Polybar module: Claude Code status (tail mode)
-# Aggregates per-project status from /tmp/claude-code-status/
+# Reads a single running/stopped status file (/tmp/claude-code-status).
 #
 
-STATUS_DIR=/tmp/claude-code-status
+STATUS_FILE=/tmp/claude-code-status
 STALE_SEC=1800
 INTERVAL=0.1
 
@@ -12,33 +12,23 @@ frames=("▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" "▇" "▆" "▅" "▄" 
 frame_idx=0
 
 while true; do
-    active_projects=()
-    idle_projects=()
-    now=$(date +%s)
+    active=0
 
-    if [[ -d "$STATUS_DIR" ]]; then
-        for f in "$STATUS_DIR"/*; do
-            [[ -f "$f" ]] || continue
-            name=$(basename "$f")
-            val=$(cat "$f" 2>/dev/null | tr -d '[:space:]')
-            mtime=$(stat -c %Y "$f" 2>/dev/null || echo 0)
+    if [[ -f "$STATUS_FILE" ]]; then
+        val=$(cat "$STATUS_FILE" 2>/dev/null | tr -d '[:space:]')
+        mtime=$(stat -c %Y "$STATUS_FILE" 2>/dev/null || echo 0)
+        now=$(date +%s)
 
-            if [[ "$val" == "active" ]] && (( now - mtime <= STALE_SEC )); then
-                active_projects+=("$name")
-            elif [[ "$val" != "stopped" ]]; then
-                idle_projects+=("$name")
-            fi
-        done
+        # A crash can leave "active" behind without a Stop hook firing,
+        # so treat a stale file as not running.
+        if [[ "$val" == "active" ]] && (( now - mtime <= STALE_SEC )); then
+            active=1
+        fi
     fi
 
-    if (( ${#active_projects[@]} > 0 )); then
-        names=$(IFS=' '; echo "${active_projects[*]}")
-        echo "%{F#4caf50}${frames[$frame_idx]} ${names}%{F-}"
+    if (( active )); then
+        echo "%{F#4caf50}${frames[$frame_idx]} Claude%{F-}"
         frame_idx=$(( (frame_idx + 1) % ${#frames[@]} ))
-    elif (( ${#idle_projects[@]} > 0 )); then
-        names=$(IFS=' '; echo "${idle_projects[*]}")
-        echo "%{F#ff9800}● ${names}%{F-}"
-        frame_idx=0
     else
         echo ""
         frame_idx=0

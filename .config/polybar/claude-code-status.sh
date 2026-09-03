@@ -1,9 +1,11 @@
 #!/bin/bash
-# Write Claude Code status per project
+# Write Claude Code running status to a single file.
 # Usage: claude-code-status.sh <active|stopped>
 
-STATUS_DIR=/tmp/claude-code-status
-PROJECT=$(basename "$PWD")
+STATUS_FILE=/tmp/claude-code-status
 
-mkdir -p "$STATUS_DIR"
-printf '%s' "$1" > "$STATUS_DIR/$PROJECT"
+# Migrate away from the old per-project directory scheme (worktrees piled up
+# one file per checkout there and never got cleaned).
+[[ -d "$STATUS_FILE" ]] && rm -rf "$STATUS_FILE"
+
+printf '%s' "$1" > "$STATUS_FILE"

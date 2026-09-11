@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gamecontroller configversion="19" appversion="3.5.1">
     <!--The SDL name for a joystick is included for informational purposes only.-->
-    <sdlname>Nintendo Switch Joy-Con (R)</sdlname>
+    <sdlname>Nintendo Switch Joy-Con (L)</sdlname>
     <!--The Unique ID for a joystick is included for informational purposes only.-->
-    <uniqueID>05006ea07e050000072000000180000014068199</uniqueID>
+    <uniqueID>050067007e050000062000000180000014068198</uniqueID>
     <stickAxisAssociation index="2" xAxis="3" yAxis="4"/>
     <stickAxisAssociation index="1" xAxis="1" yAxis="2"/>
     <vdpadButtonAssociations index="1">
@@ -19,19 +19,43 @@
     <sets>
         <set index="1">
             <stick index="1">
-                <stickbutton index="7">
+                <stickbutton index="1">
+                    <mousespeedx>200</mousespeedx>
+                    <mousespeedy>200</mousespeedy>
                     <slots>
                         <slot>
-                            <code>5</code>
-                            <mode>mousebutton</mode>
+                            <code>4</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="7">
+                    <mousespeedx>200</mousespeedx>
+                    <mousespeedy>200</mousespeedy>
+                    <slots>
+                        <slot>
+                            <code>1</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="5">
+                    <mousespeedx>200</mousespeedx>
+                    <mousespeedy>200</mousespeedy>
+                    <slots>
+                        <slot>
+                            <code>3</code>
+                            <mode>mousemovement</mode>
                         </slot>
                     </slots>
                 </stickbutton>
                 <stickbutton index="3">
+                    <mousespeedx>200</mousespeedx>
+                    <mousespeedy>200</mousespeedy>
                     <slots>
                         <slot>
-                            <code>4</code>
-                            <mode>mousebutton</mode>
+                            <code>2</code>
+                            <mode>mousemovement</mode>
                         </slot>
                     </slots>
                 </stickbutton>
@@ -42,7 +66,7 @@
             <trigger index="5">
                 <throttle>positivehalf</throttle>
             </trigger>
-            <button index="19">
+            <button index="20">
                 <slots>
                     <slot>
                         <code>5</code>
@@ -50,7 +74,15 @@
                     </slot>
                 </slots>
             </button>
-            <button index="17">
+            <button index="18">
+                <slots>
+                    <slot>
+                        <code>4</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="4">
                 <slots>
                     <slot>
                         <code>4</code>
@@ -61,7 +93,7 @@
             <button index="3">
                 <slots>
                     <slot>
-                        <code>0x1000012</code>
+                        <code>0x1000014</code>
                         <mode>keyboard</mode>
                     </slot>
                 </slots>
@@ -69,12 +101,20 @@
             <button index="2">
                 <slots>
                     <slot>
-                        <code>0x1000014</code>
+                        <code>0x1000012</code>
                         <mode>keyboard</mode>
                     </slot>
                 </slots>
             </button>
-            <button index="6">
+            <button index="1">
+                <slots>
+                    <slot>
+                        <code>5</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="8">
                 <slots>
                     <slot>
                         <code>1</code>

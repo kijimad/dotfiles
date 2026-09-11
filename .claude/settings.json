@@ -1,6 +1,5 @@
 {
   "permissions": {
-    "defaultMode": "auto",
     "allow": [
       "List(*)",
       "Fetch(https://*)",
@@ -14,7 +13,8 @@
       "Bash(mv:*)",
       "Bash(go:*)",
       "Bash(make:*)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "model": "opus[1m]",
   "hooks": {
@@ -100,6 +100,7 @@
   },
   "outputStyle": "Explanatory",
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,

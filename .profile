@@ -30,11 +30,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-# PATH="/usr/local/heroku/bin:$PATH"
-
 if [ -d "$HOME/.cargo" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
@@ -48,16 +43,6 @@ if [ -d "$HOME/go/bin" ] ; then
     export GOPATH=$HOME/go
     export GOBIN=$GOPATH/bin
     export PATH=$PATH:$GOBIN
-fi
-
-# 開発版ビルドが存在するときはそっちを使う
-# if [ -d "$HOME/Project/go/bin" ] ; then
-#     export PATH=$HOME/Project/go/bin:$PATH
-# fi
-
-if [ -d "$HOME/.rbenv" ] ; then
-    eval "$(rbenv init -)"
-    PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
 # for OpenGL

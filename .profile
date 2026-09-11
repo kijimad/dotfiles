@@ -20,6 +20,13 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+# Joy-Con 入力安定化(SDL/antimicrox 用)
+# SDL が HIDAPI で Joy-Con の hidraw を直叩きすると、kernel の hid-nintendo や
+# Chrome とサブコマンドを撃ち合い R が無反応になる。HIDAPI を切ると SDL は
+# kernel の evdev を読むようになり競合から抜ける。
+# export SDL_JOYSTICK_HIDAPI_SWITCH=0
+export SDL_JOYSTICK_HIDAPI_JOY_CONS=0
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -48,4 +55,16 @@ fi
 # for OpenGL
 if [ -d "/usr/lib/x86_64-linux-gnu/pkgconfig" ] ; then
     export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+fi
+
+# PRIME Render Offload (外部GPUがある時だけ)
+# 画面出力は AMD iGPU のまま(=suspend/resume が安定)、GL/Vulkan の描画を RTX 3050 へ。
+# NVIDIA を画面駆動 GPU にすると resume で固まるため、表示は AMD に残しつつ描画だけ dGPU。
+# /proc/driver/nvidia/gpus/ は NVIDIA GPU がバインドされている時だけ非空になるので、
+# eGPU 未接続/カード無しの環境ではこのブロックは発火せず、GL が nvidia ベンダを探して
+# 壊れることもない(ポータブル)。反映は次回ログインから。
+if [ -d /proc/driver/nvidia/gpus ] && [ -n "$(ls -A /proc/driver/nvidia/gpus 2>/dev/null)" ]; then
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
 fi

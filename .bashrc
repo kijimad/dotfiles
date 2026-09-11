@@ -191,3 +191,11 @@ PROMPT_COMMAND='__show_status;'${PROMPT_COMMAND//__show_status;/}
 if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
+
+# Go のツールは $GOPATH/bin に入る。非ログインシェルは .profile を読まないため、
+# go install したツール（golangci-lint など）を PATH に載せるにはここでも設定する。
+if [ -d "$HOME/go/bin" ] ; then
+    export GOPATH=$HOME/go
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
+fi

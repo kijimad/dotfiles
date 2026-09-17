@@ -85,7 +85,6 @@ in
     imagemagick
     jq
     libtool
-    libvterm
     mozc
     typescript
     nodejs_24
@@ -244,6 +243,8 @@ in
     package = pkgs.emacs;
     extraPackages = epkgs: with epkgs; [
       mozc
+      # vterm は C モジュールを持つため nix でビルド管理する。
+      vterm
     ];
   };
 

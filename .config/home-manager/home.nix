@@ -4,7 +4,7 @@ let
   # nixpkgs-unstable
   nixpkgs-unstable = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
-    sha256 = "1lxfhfgiv1sz2v7fg43gny57sa6wf59n98q7ldsyb2p06f4sal7w";
+    sha256 = "1sawn7snd0mdciwisj7f8fidv3x4jw7ijsxfarnm15b4mzzfcykx";
   }) { system = "x86_64-linux"; config.allowUnfree = true; };
 in
 {
@@ -66,6 +66,7 @@ in
     delve
     difftastic
     herdr
+    drawio
     docker-compose
     dunst
     emacs.pkgs.cask
@@ -81,6 +82,7 @@ in
     gopls
     (pkgs.lib.setPrio 10 gotools)
     graphify
+    graphviz
     guake # nix経由でインストールした場合、初期状態でなぜか変なフォントになる。手動で設定の「システムフォントを使う」を外して対応する
     imagemagick
     jq

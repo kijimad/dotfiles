@@ -69,6 +69,7 @@ in
     drawio
     docker-compose
     dunst
+    eww
     emacs.pkgs.cask
     emacsPackages.mozc
     font-awesome
@@ -94,7 +95,6 @@ in
     inkscape
     picom
     playerctl
-    polybar
     postgresql
     python3
     qemu-utils
@@ -188,10 +188,12 @@ in
     #   Install.WantedBy = [ "default.target" ];
     # };
 
-    polybar = {
-      Unit.Description = "Polybar status bar";
+    eww = {
+      Unit.Description = "Eww status bar";
       Service = {
-        ExecStart = "${pkgs.polybar}/bin/polybar top";
+        ExecStart = "${pkgs.eww}/bin/eww daemon --no-daemonize";
+        # struts を表示倍率に合わせるため、開くのはスクリプトに任せる
+        ExecStartPost = "${pkgs.bash}/bin/bash -c 'for i in {1..50}; do ${pkgs.eww}/bin/eww ping && break; sleep 0.2; done; %h/dotfiles/.config/eww/scripts/open-bar.sh'";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "default.target" ];

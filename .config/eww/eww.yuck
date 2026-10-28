@@ -1,0 +1,59 @@
+(deflisten pmd
+  :initial '{"cls":"off","gauge":0,"trail":0,"time":"","label":"","points":0}'
+  "scripts/pomodoro.sh")
+
+(deflisten music
+  :initial '{"status":"","line":""}'
+  "scripts/nowplaying.sh")
+
+;; Emacs が exwm-workspace-switch-hook から eww update で書き換える。poll は起動直後用
+(defpoll ws :interval "30s" :initial "0"
+  "timeout 3 emacsclient -e exwm-workspace-current-index 2>/dev/null || echo 0")
+
+(defwidget workspaces []
+  (box :halign "start" :space-evenly false
+    (label :class "ws ${ws == '0' ? 'lit' : ''}" :text "HOME")
+    (label :class "ws ${ws == '1' ? 'lit' : ''}" :text "WORK")))
+
+(defwidget souls []
+  (box :space-evenly false
+    (label :class "souls-sigil" :text "")
+    (label :class "souls-count" :text {pmd.points})))
+
+;; pomodoro をボスの HP ゲージとして描く。左右を同じ幅にしてゲージを中央に保つ
+(defwidget vigor []
+  (box :class "is-${pmd.cls}" :halign "center" :space-evenly false
+    (box :visible {pmd.cls == "off"}
+      (souls))
+    (box :visible {pmd.cls != "off"} :space-evenly false
+      (box :class "vigor-side" :space-evenly false
+        (label :class "task" :hexpand true :halign "end" :limit-width 30 :text {pmd.label}))
+      (box :class "gauge-frame" :valign "center"
+        (overlay
+          (progress :class "trail" :value {pmd.trail})
+          (progress :class "gauge" :value {pmd.gauge})
+          (box :class "ticks")))
+      (box :class "vigor-side" :space-evenly false
+        (label :class "clock" :xalign 0 :text {pmd.time})
+        (souls)))))
+
+(defwidget status []
+  (box :halign "end" :space-evenly false
+    (eventbox :cursor "pointer" :onclick "playerctl play-pause" :visible {music.line != ""}
+      (box :class "music ${music.status}" :space-evenly false
+        (label :class "music-mark" :text {music.status == "Playing" ? "♪" : "॥"})
+        (label :class "music-line" :limit-width 24 :text {music.line})))
+    (label :class "date" :text {formattime(EWW_TIME, "%a, %b %-d")})
+    (label :class "time" :text {formattime(EWW_TIME, "%H:%M")})
+    (button :class "lock" :onclick "cinnamon-screensaver-command -l" "")))
+
+;; 高さは中身で決まる。struts は実際の高さを scripts/open-bar.sh が渡す
+(defwindow bar [strut]
+  :monitor 0
+  :geometry (geometry :width "100%" :height "1px" :anchor "top center")
+  :windowtype "dock"
+  :reserve (struts :side "top" :distance strut)
+  (centerbox :class "bar"
+    (workspaces)
+    (vigor)
+    (status)))

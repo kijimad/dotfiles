@@ -1,0 +1,167 @@
+// 寸法は em で書き、文字の大きさと表示倍率に合わせて伸縮させる
+
+$parchment: #d8cfb8;
+$ash: #6f685b;
+$gold: #e6c47c;
+$shadow: 0 1px 1px rgba(0, 0, 0, 0.9);
+$glow: 0 0 6px rgba(255, 158, 64, 0.7), $shadow;
+$gauge-width: 42em;
+$shine-width: 12em;
+
+* {
+  all: unset;
+  font-family: "Noto Serif Display", "Noto Serif CJK JP";
+  font-size: 8.5pt;
+  color: $parchment;
+}
+
+label {
+  text-shadow: $shadow;
+}
+
+.bar {
+  padding: 0.35em 1.2em;
+  background-image: linear-gradient(to bottom, #1a1714, #0b0a09);
+  box-shadow: inset 0 -1px 0 #3b3123;
+}
+
+.ws {
+  margin-right: 1.5em;
+  color: $ash;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+}
+
+.ws.lit {
+  color: $gold;
+  text-shadow: $glow;
+}
+
+// ---- ボスの HP ゲージ ----
+
+.vigor-side {
+  min-width: 19em;
+}
+
+.task, .music-line {
+  font-family: "Noto Serif CJK JP";
+}
+
+.gauge-frame {
+  margin: 0 1em;
+  border: 1px solid #000000;
+}
+
+.gauge-frame trough {
+  min-width: $gauge-width;
+  min-height: 0.7em;
+}
+
+.gauge-frame progress {
+  min-height: 0.7em;
+}
+
+.trail trough {
+  background-color: #1a1210;
+}
+
+// 被弾直後に残る残像
+.trail progress {
+  background-image: linear-gradient(to bottom, #d8b968, #c9a24a 50%, #6e5220);
+}
+
+// 12 区画の区切りと、その 5 等分の下半分の目盛り。
+// 目盛りは区画と同じタイルに描いてずれを防ぎ、中央から敷き詰めて両端を対称にする
+.ticks {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.8) 1px, transparent 1px),
+    repeating-linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.5) 2%, transparent 2%, transparent 20%);
+  background-size: 8.3333% 100%, 8.3333% 50%;
+  background-position: 50% 0, 50% 100%;
+  background-repeat: repeat-x;
+}
+
+// 時刻の枠を固定し、数字の幅で右の pts が揺れないようにする
+.clock {
+  min-width: 3.5em;
+  margin-right: 1em;
+}
+
+.clock, .souls-count, .date, .time {
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+.souls-sigil {
+  margin-right: 0.4em;
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  font-size: 11pt;
+  color: $gold;
+  text-shadow: $glow;
+}
+
+// pomodoro: 血の赤の上を光の筋が流れる。
+// 筋の大きさと移動距離はゲージ全体の長さで決め、残量に関係なく同じ速さで横切らせる
+@keyframes sweep {
+  from { background-position: -$shine-width 0, 0 0; }
+  to   { background-position: $gauge-width 0, 0 0; }
+}
+
+.is-pomodoro .gauge progress {
+  background-image:
+    linear-gradient(105deg, transparent 30%, rgba(255, 220, 190, 0.45) 50%, transparent 70%),
+    linear-gradient(to bottom, #b0352a, #8e1a14 15%, #6e0d0a 50%, #4a0605 80%, #2a0302);
+  background-size: $shine-width 100%, 100% 100%;
+  background-repeat: no-repeat;
+  animation: sweep 3s linear infinite;
+}
+
+// overtime: 溝が血の色で脈打つ
+@keyframes bleed {
+  to { background-color: #6a120c; }
+}
+
+.is-overtime {
+  .trail trough { animation: bleed 450ms ease-in-out infinite alternate; }
+  .clock { color: #ff6a50; }
+}
+
+// 休憩はスタミナの緑、clock のみは FP の青
+.is-break .gauge progress {
+  background-image: linear-gradient(to bottom, #6aa95c, #3f7d36 60%, #1d3d19);
+}
+
+.is-clocking .gauge progress {
+  background-image: linear-gradient(to bottom, #5577c4, #2d4f9c 60%, #16274e);
+}
+
+// ---- 右側 ----
+
+.music, .date, .time, .lock {
+  margin-left: 1.2em;
+}
+
+.music-mark {
+  margin-right: 0.5em;
+  color: $gold;
+}
+
+.music-line {
+  font-style: italic;
+  color: $ash;
+}
+
+.music.Playing .music-line {
+  color: $parchment;
+}
+
+.lock {
+  font-family: "Material Icons";
+  font-size: 10pt;
+  color: $ash;
+}
+
+.lock:hover {
+  color: $gold;
+}

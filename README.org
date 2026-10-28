@@ -4,7 +4,7 @@
 - GNU Emacs
 - GNU Stow
 - EXWM(Emacs X Window Manager)
-- Polybar
+- Eww
 - Docker
 - Go
 - Rust

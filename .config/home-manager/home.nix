@@ -90,7 +90,7 @@ in
     libtool
     mozc
     typescript
-    nodejs_24
+    nodejs_26
     peco
     inkscape
     picom
@@ -113,7 +113,7 @@ in
     vscode
     wget
     xournalpp
-    yarn
+    (yarn.override { nodejs = nodejs_26; })
 
     # Bluetooth
     bluez
